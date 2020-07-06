@@ -53,12 +53,6 @@
     <Compile Include="Administrators.Designer.cs">
       <DependentUpon>Administrators.cs</DependentUpon>
     </Compile>
-    <Compile Include="Branch_Information.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Branch_Information.Designer.cs">
-      <DependentUpon>Branch_Information.cs</DependentUpon>
-    </Compile>
     <Compile Include="CloseRelatives_Information.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,9 +172,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Administrators.resx">
       <DependentUpon>Administrators.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Branch_Information.resx">
-      <DependentUpon>Branch_Information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CloseRelatives_Information.resx">
       <DependentUpon>CloseRelatives_Information.cs</DependentUpon>

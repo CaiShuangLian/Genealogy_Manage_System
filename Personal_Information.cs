@@ -50,7 +50,7 @@ namespace Genealogy_Management_System
             else
             {
                 textBox2.Text = dr["M_Name"].ToString();
-                textBox3.Text = dr["G_ID"].ToString();
+                //textBox3.Text = dr["G_ID"].ToString();
                 textBox3.Text = dr["M_FatherID"].ToString();
                 textBox5.Text = dr["M_MotherID"].ToString();
                 textBox7.Text = dr["M_SpouseID"].ToString();
@@ -62,26 +62,35 @@ namespace Genealogy_Management_System
                 textBox14.Text = dr["M_Liveplace"].ToString();
 
                 dr.Close();
+                //父亲姓名查找
                 sql = "select M_Name from Member where M_ID='" + textBox3.Text + "'";
                 cmd = new SqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
-                if (dr.Read())
-                    textBox4.Text = dr["M_Name"].ToString();
+                if (!dr.Read())
+                    textBox4.Text = "";
+                else
+                {
+                            textBox4.Text = dr["M_Name"].ToString();
+                }
 
                 dr.Close();
                 //母亲姓名查找
                 sql = "select M_Name from Member where M_ID='" + textBox5.Text + "'";
                 cmd = new SqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
-                if (dr.Read())
+                if (!dr.Read())
+                    textBox6.Text = "";
+                else
                     textBox6.Text = dr["M_Name"].ToString();
 
                 dr.Close();
-                //母亲姓名查找
+                //配偶姓名查找
                 sql = "select M_Name from Member where M_ID='" + textBox7.Text + "'";
                 cmd = new SqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
-                if (dr.Read())
+                if (!dr.Read())
+                    textBox8.Text = "";
+                else
                     textBox8.Text = dr["M_Name"].ToString();
 
             }

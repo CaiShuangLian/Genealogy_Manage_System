@@ -28,7 +28,7 @@ namespace Genealogy_Management_System
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string _Fname = textBox2.Text.Trim();//族谱ID
+            string _Fname = textBox1.Text.Trim();//族谱ID
             string constr = "Server=.;Database=Genealogy Management System;Integrated Security=True";
             SqlConnection con = new SqlConnection(constr);
             con.Open();

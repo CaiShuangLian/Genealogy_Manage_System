@@ -86,16 +86,16 @@ namespace Genealogy_Management_System
                 textBox11.Text = dr["M_Birthplace"].ToString();
 
                 //保存当前登录用户的父母亲
-                string FatherID;
-                string MotherID;
-                string SpouseID;
-                string myFatherID;
-                string myMotherID;
-                string mySpouseID;
+                string FatherID="";
+                string MotherID="";
+                string SpouseID="";
+                string myFatherID="";
+                string myMotherID="";
+                string mySpouseID="";
 
                 dr.Close();
                 //母亲姓名和ID查找
-                sql = "select * from Member where M_ID=(select M_MotherID from Member where M_ID ='" + textBox1.Text + "')";
+                sql = "select M_ID,M_Name from Member where M_ID=(select M_MotherID from Member where M_ID ='" + textBox1.Text + "')";
                 cmd = new SqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
                 if (!dr.Read())
@@ -110,19 +110,20 @@ namespace Genealogy_Management_System
                 }
                 dr.Close();
                 //父亲姓名查找
-                sql = "select * from Member where M_ID=(select M_FatherID from Member where M_ID ='" + textBox1.Text + "')";
+                sql = "select M_ID,M_Name from Member where M_ID=(select M_FatherID from Member where M_ID ='" + textBox1.Text + "')";
                 cmd = new SqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
                 if (!dr.Read())
                 {
-                    textBox4.Text = "";
-                    FatherID = "";
+                    textBox4.Text =null;
+                    FatherID =null;
                 }
                 else
                 {
                     textBox4.Text = dr["M_Name"].ToString();
                     FatherID = dr["M_ID"].ToString();
                 }
+                
                 dr.Close();
                 //配偶姓名查找
                 sql = "select * from Member where M_ID=(select M_SpouseID from Member where M_ID ='" + textBox1.Text + "')";
@@ -150,7 +151,10 @@ namespace Genealogy_Management_System
                 if (!dr.Read())
                     myFatherID = "";
                 else
-                    myFatherID = dr["M_FatherID"].ToString();//myFatherID是用户父亲的ID，
+                { 
+                    myFatherID = dr["M_FatherID"].ToString();
+                   // MessageBox.Show(myFatherID);
+                }//myFatherID是用户父亲的ID，
 
                 dr.Close();
                 sql = "select M_MotherID from Member where M_ID='" + Globaldate.ID + "'";
@@ -174,34 +178,30 @@ namespace Genealogy_Management_System
                 if (FatherID == Globaldate.ID || MotherID == Globaldate.ID)
                 {
                     if(textBox3.Text=="男")
-                        textBox7.Text = "他是我儿";
+                        textBox7.Text = "这是我儿";
                     else
                         textBox7.Text = "这是我的女儿";
                 }
-                else if ((FatherID == myFatherID || myMotherID == MotherID) && Globaldate.ID != textBox1.Text)
+                else if ((FatherID == myFatherID || myMotherID == MotherID) )
                 {
                     if (textBox3.Text == "女")
                         textBox7.Text = "这是我姐妹儿";
-                    else
+                    if (textBox3.Text == "男")
                         textBox7.Text = "这是我兄弟";
+                    if( Globaldate.ID == textBox1.Text)
+                        textBox7.Text = "这是你自己";
                 }
-                else if (myID == MotherID)
-                {
-                    textBox7.Text = "我是他的母亲";
-                }
-                else if (textBox1.Text.Trim() == myMotherID)
+                
+                else if (textBox1.Text == myMotherID)
                 {
                     textBox7.Text = "她是我的母亲";
                 }
-                else if (myID == FatherID)
-                {
-                    textBox7.Text = "我是他的父亲";
-                }
-                else if (textBox1.Text.Trim() == myFatherID)
+                
+                else if (textBox1.Text== myFatherID)
                 {
                     textBox7.Text = "他是我爹";
                 }
-                else if (SpouseID == mySpouseID)
+                else if (SpouseID == myID)
                 {
                     if (textBox3.Text == "女")
                         textBox7.Text = "我的妻子！";

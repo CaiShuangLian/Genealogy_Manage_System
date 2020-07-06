@@ -29,7 +29,7 @@ namespace Genealogy_Management_System
         private void button1_Click(object sender, EventArgs e)
         {
             string name = textBox1.Text.Trim();//族谱ID
-            string _Fname = textBox3.Text.Trim();//事件ID
+            string _Fname = textBox2.Text.Trim();//事件ID
             string constr = "Server=.;Database=Genealogy Management System;Integrated Security=True";
             SqlConnection con = new SqlConnection(constr);
             con.Open();
