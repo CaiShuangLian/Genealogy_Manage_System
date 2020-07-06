@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Genealogy_Management_System
+namespace 期末作业_族谱
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Genealogy_Management_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new Form4());
         }
     }
 }
