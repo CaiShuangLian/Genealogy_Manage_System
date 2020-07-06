@@ -171,22 +171,27 @@ namespace Genealogy_Management_System
                     mySpouseID = dr["M_SpouseID"].ToString();//mymatherID是用户母亲的ID，
 
                 //显示近亲与自己的关系(两服)
-                if (FatherID == myID || MotherID == myID)
-                    textBox7.Text = "他是我儿";
-                else if ((FatherID == myFatherID|| myMotherID == MotherID) && Globaldate.ID!=textBox1.Text)
+                if (FatherID == Globaldate.ID || MotherID == Globaldate.ID)
                 {
-                    if(textBox3.Text=="女")
+                    if(textBox3.Text=="男")
+                        textBox7.Text = "他是我儿";
+                    else
+                        textBox7.Text = "这是我的女儿";
+                }
+                else if ((FatherID == myFatherID || myMotherID == MotherID) && Globaldate.ID != textBox1.Text)
+                {
+                    if (textBox3.Text == "女")
                         textBox7.Text = "这是我姐妹儿";
                     else
                         textBox7.Text = "这是我兄弟";
                 }
-                else if (myID==MotherID)
+                else if (myID == MotherID)
                 {
                     textBox7.Text = "我是他的母亲";
                 }
-                else if (textBox1.Text.Trim()==myMotherID)
+                else if (textBox1.Text.Trim() == myMotherID)
                 {
-                    textBox7.Text = "我的母亲";
+                    textBox7.Text = "她是我的母亲";
                 }
                 else if (myID == FatherID)
                 {
@@ -198,18 +203,18 @@ namespace Genealogy_Management_System
                 }
                 else if (SpouseID == mySpouseID)
                 {
-                    if(textBox3.Text=="女")
+                    if (textBox3.Text == "女")
                         textBox7.Text = "我的妻子！";
                     else
                         textBox7.Text = "我的丈夫！";
                 }
-               
+
                 else
                 {
                     textBox7.Text = "系统君已晕，他是你的同宗！";
                 }
 
-
+                dr.Close();
 
 
             }
